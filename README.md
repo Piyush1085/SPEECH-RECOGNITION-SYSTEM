@@ -57,4 +57,5 @@ Maps the command ID to specific device actions. Relay Module: Switches devices b
 
 # CIRCUIT DIAGRAM
 
+![Image](https://github.com/user-attachments/assets/ffa93d49-0e79-4e70-b9df-d3063ffa86a3)
 
