@@ -18,36 +18,42 @@
 BUILD A BASIC SPEECH RECOGNITION SYSTEM FOR COMMAND-BASED CONTROL OF DEVICES USING AN EMBEDDED BOARD.
 
 # Components Required:
-Arduino Uno/Nano Bluetooth Module (e.g., HC-05 or HC-06) 4-Channel Relay Module Smartphone with a Bluetooth terminal app Electrical appliances (e.g., LED, fan) Breadboard and jumper wires
+Embedded board (e.g., Arduino Uno, ESP32, or Raspberry Pi) Speech recognition module (e.g., Elechouse V3 Voice Recognition Module) Relay module (to control devices) Electrical appliances (LED, fan, etc.) Power supply Jumper wires
 
 # Circuit Connections:
-Bluetooth Module (HC-05):
-VCC → 5V (Arduino)
-GND → GND (Arduino) 
-TX → RX (Arduino) 
-RX → TX (Arduino) 
+Speech Recognition Module:
+VCC → 5V (Arduino or ESP32) 
+GND → GND
+RX → TX (Arduino Pin 2) 
+TX → RX (Arduino Pin 3) 
 
 Relay Module:
-IN1 → Pin 8 (Arduino) 
-IN2 → Pin 9 (Arduino) 
-IN3 → Pin 10 (Arduino) 
-IN4 → Pin 11 (Arduino) 
-VCC → 5V (Arduino)
-GND → GND (Arduino)
+IN1 → Pin 8 (Arduino or ESP32) 
+IN2 → Pin 9 
+VCC → 5V 
+GND → GND 
+Devices: Connect the positive terminal of the device to the relay's NO (Normally Open) terminal. Connect the common (COM) terminal to the power source.
 
-# APPLIANCES:
-Connect each appliance's positive terminal to a relay's NO (Normally Open) terminal. Connect the common (COM) terminal of each relay to the power source.
+# HOW IT WORKS:
+Speech Recognition Module:
 
-# POWER SUPPLY:
-Ensure the relays can handle the voltage and current of connected devices. For safety, use a separate power supply for high-voltage appliances.
+Pre-trained to recognize specific voice commands (e.g., "Turn on light", "Turn off fan"). Sends commands to the embedded board. Embedded Board:
+
+Receives the command via serial communication. Decodes the command and controls the relays to switch devices on/off. Relay Module:
+
+Acts as a switch to control high-power devices. Circuit Diagram
+
+# TRAINING VOICE COMMAND:
+Use the Elechouse Voice Recognition Module V3 or a similar module with a setup tool (usually a GUI) to train commands. Train commands like: "Turn on light" "Turn off light" "Turn on fan" "Turn off fan" Alternative Using ESP32 (Built-In Microphone or External) If using an ESP32 with TensorFlow Lite Micro:
+
+Train a simple keyword detection model (e.g., "ON", "OFF"). Use TensorFlow Lite Micro or Edge Impulse to deploy a model on the ESP32.
 
 # WORKING:
-Pair the HC-05 module with your smartphone. Use the default PIN (1234 or 0000). Open a Bluetooth terminal app. Send the following commands to control devices: 
-1: Turn ON Device 1 
-2: Turn OFF Device 1
-3: Turn ON Device 2 
-4: Turn OFF Device 2 
-5-8: Control Device 3 and Device 4 similarly
+Speech Recognition Module:
+
+Matches spoken commands to pre-trained phrases. Sends matched command IDs to the board. Embedded Board:
+
+Maps the command ID to specific device actions. Relay Module: Switches devices based on the board's output.
 
 # CIRCUIT DIAGRAM
 
